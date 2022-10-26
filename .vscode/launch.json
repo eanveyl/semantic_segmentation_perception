@@ -13,6 +13,16 @@
             //"args": ["--gpus", "1", "--cfg", "config/ade20k-mobilenetv2dilated-c1_deepsup.yaml"],
             "args": ["--gpus", "1", "--cfg", "config/ade20k-hrnetv2-edu.yaml"],
             "justMyCode": true
+        }, 
+        {
+            "name": "Python eval_multipro.py Debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            //"args": ["--gpus", "1", "--cfg", "config/ade20k-mobilenetv2dilated-c1_deepsup.yaml"],
+            "args": ["--gpus", "0", "--cfg", "config/ade20k-hrnetv2-edu.yaml"],
+            "justMyCode": true
         }
     ]
 }

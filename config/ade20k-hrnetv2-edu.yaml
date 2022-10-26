@@ -4,7 +4,7 @@ DATASET:
   list_val: "./data/habitatvalidation.odgt"
   num_class: 101
   imgSizes: (512, 512)
-  imgMaxSize: 1000
+  imgMaxSize: 512
   padding_constant: 32
   segm_downsampling_rate: 4
   random_flip: True
@@ -16,9 +16,9 @@ MODEL:
 
 TRAIN:
   batch_size_per_gpu: 1
-  num_epoch: 30
+  num_epoch: 20
   start_epoch: 0
-  epoch_iters: 5000
+  epoch_iters: 1200  # i guess this is the number of images we have available for training. Default was 5000
   optim: "SGD"
   lr_encoder: 0.02
   lr_decoder: 0.02
@@ -32,11 +32,11 @@ TRAIN:
   seed: 304
 
 VAL:
-  visualize: False
-  checkpoint: "epoch_30.pth"
+  visualize: True  # visualize validation results. Default was False
+  checkpoint: "epoch_7.pth"
 
 TEST:
-  checkpoint: "epoch_30.pth"
+  checkpoint: "epoch_7.pth"
   result: "./"
 
 DIR: "ckpt/ade20k-hrnetv2-c1-edu"
