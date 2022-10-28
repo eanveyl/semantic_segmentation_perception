@@ -1,7 +1,9 @@
 DATASET:
   root_dataset: "./data/"
   list_train: "./data/habitattraining.odgt"
-  list_val: "./data/habitatvalidation.odgt"
+  #list_val: "./data/habitatvalidation.odgt"
+  #list_val: "./data/habitat_apt0_validation.odgt"
+  list_val: "./data/habitatdirectinput.odgt"
   num_class: 101
   imgSizes: (512, 512)
   imgMaxSize: 512
@@ -34,6 +36,7 @@ TRAIN:
 VAL:
   visualize: True  # visualize validation results. Default was False
   checkpoint: "epoch_14.pth"
+  num_class_in_val: 49  # number of classes that actually appear in the validation dataset
 
 TEST:
   checkpoint: "epoch_14.pth"

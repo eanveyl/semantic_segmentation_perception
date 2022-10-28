@@ -20,7 +20,7 @@ from PIL import Image
 from tqdm import tqdm
 
 colors = loadmat('data/color101.mat')['colors']
-
+generate_comparison_views = False
 
 def visualize_result(data, pred, dir_result):
     (img, seg, info) = data
@@ -36,7 +36,12 @@ def visualize_result(data, pred, dir_result):
                             axis=1).astype(np.uint8)
 
     img_name = info.split('/')[-1]
-    Image.fromarray(im_vis).save(os.path.join(dir_result, img_name.replace('.jpg', '.png')))
+    global generate_comparison_views
+    if generate_comparison_views:
+        Image.fromarray(im_vis).save(os.path.join(dir_result, img_name.replace('.jpg', '.png')))
+    else:
+        #Image.fromarray(pred_color).save(os.path.join(dir_result, "aaa" + img_name.split(".")[0] + "_pred.png"))  # allows us to save only the prediction as a separate image
+        Image.fromarray(pred_color).save(os.path.join(dir_result, img_name.replace(".jpg", ".png")))  # allows us to save only the prediction as a separate image
 
 
 def evaluate(segmentation_module, loader, cfg, gpu_id, result_queue):
@@ -69,7 +74,11 @@ def evaluate(segmentation_module, loader, cfg, gpu_id, result_queue):
 
         # calculate accuracy and SEND THEM TO MASTER
         acc, pix = accuracy(pred, seg_label)
-        intersection, union = intersectionAndUnion(pred, seg_label, cfg.DATASET.num_class)
+        #intersection, union = intersectionAndUnion(pred, seg_label, cfg.DATASET.num_class)
+        try:
+            intersection, union = intersectionAndUnion(pred, seg_label, cfg.VAL.num_class_in_val)  # try to use the number of classes in the validation set, to avoid disrupting the accuracy statistic
+        except:
+            intersection, union = intersectionAndUnion(pred, seg_label, cfg.DATASET.num_class)  # still support the original way in case the config file does not have num_class_in_val
         result_queue.put_nowait((acc, pix, intersection, union))
 
         # visualization
