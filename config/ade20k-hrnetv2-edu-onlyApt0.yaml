@@ -1,9 +1,10 @@
 DATASET:
   root_dataset: "./data/"
-  list_train: "./data/habitattraining.odgt"
+  list_train: "./data/habitat_onlyApt0_training.odgt"
   #list_val: "./data/habitatvalidation.odgt"
-  list_val: "./data/habitat_apt0_validation.odgt"
+  #list_val: "./data/habitat_apt0_validation.odgt"
   #list_val: "./data/habitatdirectinput.odgt"
+  list_val: "./data/habitat_onlyApt0_validation.odgt"
   num_class: 101
   imgSizes: (512, 512)
   imgMaxSize: 512
@@ -18,9 +19,9 @@ MODEL:
 
 TRAIN:
   batch_size_per_gpu: 1
-  num_epoch: 14
+  num_epoch: 12
   start_epoch: 7
-  epoch_iters: 1200  # i guess this is the number of images we have available for training. Default was 5000
+  epoch_iters: 1300  # i guess this is the number of images we have available for training. Default was 5000
   optim: "SGD"
   lr_encoder: 0.02
   lr_decoder: 0.02
@@ -35,11 +36,11 @@ TRAIN:
 
 VAL:
   visualize: True  # visualize validation results. Default was False
-  checkpoint: "epoch_14.pth"
+  checkpoint: "epoch_7.pth"
   num_class_in_val: 49  # number of classes that actually appear in the validation dataset
 
 TEST:
   checkpoint: "epoch_14.pth"
   result: "./"
 
-DIR: "ckpt/ade20k-hrnetv2-c1-edu"  # here the checkpoints are saved as well as the validation results
+DIR: "ckpt/ade20k-hrnetv2-c1-edu-onlyApt0"  # here the checkpoints are saved as well as the validation results

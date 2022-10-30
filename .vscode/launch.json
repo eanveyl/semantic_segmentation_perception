@@ -11,7 +11,8 @@
             "program": "${file}",
             "console": "integratedTerminal",
             //"args": ["--gpus", "1", "--cfg", "config/ade20k-mobilenetv2dilated-c1_deepsup.yaml"],
-            "args": ["--gpus", "1", "--cfg", "config/ade20k-hrnetv2-edu.yaml"],
+            //"args": ["--gpus", "1", "--cfg", "config/ade20k-hrnetv2-edu.yaml"],
+            "args": ["--gpus", "1", "--cfg", "config/ade20k-hrnetv2-edu-onlyApt0.yaml"],
             "justMyCode": true
         }, 
         {
@@ -21,7 +22,8 @@
             "program": "${file}",
             "console": "integratedTerminal",
             //"args": ["--gpus", "1", "--cfg", "config/ade20k-hrnetv2-edu.yaml"],
-            "args": ["--gpus", "0", "--cfg", "config/ade20k-hrnetv2-edu.yaml"],
+            //"args": ["--gpus", "0", "--cfg", "config/ade20k-hrnetv2-edu.yaml"],
+            "args": ["--gpus", "0", "--cfg", "config/ade20k-hrnetv2-edu-onlyApt0.yaml"],
             "justMyCode": true
         }
     ]
